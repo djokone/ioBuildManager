@@ -1,18 +1,16 @@
 #! /usr/bin/env node
-var Io = require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/Io')
+var Io = require('iorizon-cli')
 let version = require('../package.json').version
-var View = require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/view')
+var View = require('iorizon-cli/bin/lib/view')
 let color = require('chalk')
 
-require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/debugger')
+require('iorizon-cli/bin/lib/debugger')
 let buildManager = new Io()
 let options = {
   head: ['Commands', 'Path to the command'],
   style: {head: ['green']},
   colWidths: [15, 30]
 }
-
-
 
 if (buildManager.cmd) {
   buildManager.runSubCommand()

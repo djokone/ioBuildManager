@@ -1,5 +1,6 @@
 #! /usr/bin/env node
-var Io = require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/Io')
+var Io = require('iorizon-cli')
+require('iorizon-cli/bin/lib/debugger')
 let fs = require('fs')
 let path = require('path')
 

@@ -5,12 +5,19 @@
   "description": "Package to manage your build workflow with iorizon",
   "main": "buildManager",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha",
+    "testing": "nyc mocha -w"
   },
   "author": "tim@thefrenchmachine.fr",
   "license": "ISC",
   "dependencies": {
     "chalk": "^2.3.0",
-    "commander": "^2.12.2"
+    "commander": "^2.12.2",
+    "iorizon-cli": "^1.4.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^4.1.0",
+    "nyc": "^11.4.1"
   }
 }
