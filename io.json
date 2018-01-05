@@ -11,8 +11,7 @@
   "options": {
     "--destination|-d": "@builds",
     "--as": "webpack",
-    "--folder|-fo": ["./build", "d"],
-    "--files|-fi": ["package.json"]
+    "--include|-i": ["package.json"]
   },
   "workflow": "@workflow/imperial",
   "modules": {

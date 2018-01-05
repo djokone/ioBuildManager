@@ -9,6 +9,3 @@ if (change.hasCurrentModules && change.module.isLoaded) {
     // if (change.global.Alias((v.url) === thi) {}
   })
 }
-
-// console.log(change.current.content.modules)
-// console.log(change.currentPath)
