@@ -1,0 +1,41 @@
+#! /usr/bin/env node
+var Io = require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/Io')
+let fs = require('fs')
+let path = require('path')
+
+let save = new Io()
+// let folder = 
+// console.log(save.options)
+// console.log(save.current.url)
+// console.log(moduleBuildConf)
+let success = false
+let error = {}
+let existInCurrent = function (folder) {
+  return fs.existsSync(path.resolve(save.current.url, folder))
+}
+
+if (!Array.isArray(save.options.folder) && existInCurrent(save.options.folder)) {
+  success = true
+} else {
+  
+  let inSuccess = true
+  for (let f of save.options.folder) {
+    if (!existInCurrent(f)) {
+      inSuccess = false
+      error[f] = path.normalize(path.resolve(save.current.url))
+    }
+  }
+  if (inSuccess) {
+    success = true
+  }
+}
+
+if (!success) {
+  for (let err in error) {
+    console.error(err + ' file doesn\'t exist in ' + error[err] + ' folder')
+  }
+}
+// if (fs.existsSync(path.resolve(save.current.url, moduleBuildConf.folder))) {
+
+// }
+// console.log(save.current.modules.content[save.parentCmd[0]])

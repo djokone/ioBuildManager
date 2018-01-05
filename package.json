@@ -1,0 +1,16 @@
+{
+  "name": "build-manager",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Package to manage your build workflow with iorizon",
+  "main": "buildManager",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "tim@thefrenchmachine.fr",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.3.0",
+    "commander": "^2.12.2"
+  }
+}

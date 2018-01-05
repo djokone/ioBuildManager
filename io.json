@@ -1,0 +1,29 @@
+{
+  "name": "io-build-manager",
+  "alias": {
+    "sites": "e:/sites",
+    "factory": "@sites/myModules",
+    "workflow": "@factory/workflow",
+    "factoryNpm": "@factory/NPM",
+    "io": "@factoryNpm/iorizon",
+    "builds": "@factoryNpm/Builds"
+  },
+  "options": {
+    "--destination|-d": "@builds",
+    "--as": "webpack",
+    "--folder|-fo": ["./build", "d"],
+    "--files|-fi": ["package.json"]
+  },
+  "workflow": "@workflow/imperial",
+  "modules": {
+    "save": {
+      "url": "./bin/save"
+    },
+    "change": {
+      "url": "./bin/change"
+    },
+    "list": {
+      "url": "./bin/list"
+    }
+  }
+}

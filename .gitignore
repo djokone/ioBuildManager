@@ -1,3 +1,9 @@
+# Files compress
+*.zip
+
+# Iorizon global
+*-global.json
+
 # Logs
 logs
 *.log

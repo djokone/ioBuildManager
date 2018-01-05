@@ -1,0 +1,34 @@
+#! /usr/bin/env node
+var Io = require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/Io')
+let version = require('../package.json').version
+var View = require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/view')
+let color = require('chalk')
+
+require('e:/sites/myModules/NPM/Scripts/Iorizon-cli/bin/lib/debugger')
+let buildManager = new Io()
+let options = {
+  head: ['Commands', 'Path to the command'],
+  style: {head: ['green']},
+  colWidths: [15, 30]
+}
+
+
+
+if (buildManager.cmd) {
+  buildManager.runSubCommand()
+} else {
+  let buildManagerModules = new View(options, 'simple')
+  console.info('')
+  console.info(color.green('Build Manager') + ' version ' + color.yellow(version) + ' - ' + color.bgRed(' Made with ♥ '))
+  console.info('')
+
+  console.info(color.yellow('Usage :'))
+  console.info('  io || iorizon build --option <command>')
+  console.info('')
+  console.info(color.yellow('All the build module commands :'))
+  buildManager.module.modules.each((v, k) => {
+    buildManagerModules.push([v, buildManager.global.alias.parseUrl(k.url)])
+  })
+  console.info(buildManagerModules.toString())
+}
+
