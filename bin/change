@@ -1,6 +1,6 @@
 #! /usr/bin/env node
 
-var io = require('e:/sites/myModules/NPM/scripts/Iorizon-cli/bin/lib/Io') // before creating a npm package
+var io = require('iorizon-cli') // before creating a npm package
 
 change = new io()
 console.log(change.parsedArgv)
@@ -9,6 +9,3 @@ if (change.hasCurrentModules && change.module.isLoaded) {
     // if (change.global.Alias((v.url) === thi) {}
   })
 }
-
-// console.log(change.current.content.modules)
-// console.log(change.currentPath)
