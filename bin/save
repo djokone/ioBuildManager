@@ -1,36 +1,53 @@
 #! /usr/bin/env node
 var Io = require('iorizon-cli')
 require('iorizon-cli/bin/lib/debugger')
+var FM = require('../lib/FileManager.js')
+
 let fs = require('fs')
 let path = require('path')
 
 let save = new Io()
-// let folder = 
-// console.log(save.options)
-// console.log(save.current.url)
-// console.log(moduleBuildConf)
-let success = false
-// console.log(save.current.url)
-let error = {}
-let existInCurrent = function (folder) {
-  return fs.existsSync(path.resolve(save.current.url, folder))
-}
+// console.log(save.options.destination)
+let Files = new FM({
+  includes: save.options.include,
+  destination: save.options.destination
+})
 
-let glob = require("glob").Glob
-let filesGlob = []
-let getFiles = function () {
-  let options = {
-    cwd: save.current.url
-  }
-  for (let inc of save.options.include) {
-    console.log(inc)
-    filesGlob.push(new glob(inc, options, function (err, files) {
-      console.log(err)
-      console.log(files)
-    }))
-  }
-}
-getFiles()
+Files.on('allMatched', () => {
+  console.log(Files.includeFiles)
+})
+Files.copyIncludeFiles()
+Files.on('copy', () => {
+  console.log('copyyyyyyyyyy')
+})
+Files.on('successCopy', () => {
+  console.log('copy finish !')
+})
+// let success = false
+
+// let error = {}
+// let existInCurrent = function (folder) {
+//   return fs.existsSync(path.resolve(save.current.url, folder))
+// }
+
+
+
+// let getFiles = function () {
+//   let glob = require("glob").Glob
+//   let filesGlob = []
+//   let options = {
+//     cwd: save.current.url
+//   }
+//   for (let inc of save.options.include) {
+//     console.log(inc)
+//     filesGlob.push(new glob(inc, options, function (err, files) {
+//       console.log(err)
+//       console.log(files)
+//     }))
+//   }
+// }
+
+
 // if (!Array.isArray(save.options.folder) && existInCurrent(save.options.include)) {
 //   success = true
 // } else {

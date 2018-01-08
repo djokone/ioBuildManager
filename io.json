@@ -9,12 +9,16 @@
     "builds": "@factoryNpm/Builds"
   },
   "options": {
-    "--destination|-d": "@builds",
+    "--destination|-d": "e:/sites/myModules/NPM/Builds",
+    "--name": "save",
     "--as": "webpack",
     "--include|-i": ["package.json"]
   },
   "workflow": "@workflow/imperial",
   "modules": {
+    "status": {
+      "url": "./bin/status"
+    },
     "save": {
       "url": "./bin/save"
     },
