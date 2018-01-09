@@ -10,7 +10,8 @@
   },
   "options": {
     "--destination|-d": "e:/sites/myModules/NPM/Builds",
-    "--name": "save",
+    "--interactive|-it": true,
+    "--name": "webpack-build",
     "--as": "webpack",
     "--include|-i": ["package.json"]
   },

@@ -1,28 +1,88 @@
 #! /usr/bin/env node
 var Io = require('iorizon-cli')
+var Event = require('events')
 require('iorizon-cli/bin/lib/debugger')
 var FM = require('../lib/FileManager.js')
-
+var inquirer = require('inquirer')
 let fs = require('fs')
 let path = require('path')
+let state = new Event()
+let color = require('chalk')
 
 let save = new Io()
-// console.log(save.options.destination)
-let Files = new FM({
-  includes: save.options.include,
-  destination: save.options.destination
-})
+let to = save.options.destination
+if (save.options.name) {
+  to = path.resolve(to, save.options.name)
+}
 
-Files.on('allMatched', () => {
-  console.log(Files.includeFiles)
-})
-Files.copyIncludeFiles()
-Files.on('copy', () => {
-  console.log('copyyyyyyyyyy')
-})
-Files.on('successCopy', () => {
-  console.log('copy finish !')
-})
+let runSaveCmd = function (options) {
+  let Files = new FM({
+    includes: save.options.include,
+    destination: options.dest
+  })
+  Files.on('allMatched', () => {
+    console.log(Files.includeFiles)
+  })
+  Files.copyIncludeFiles()
+  Files.on('copy', () => {
+    console.log('copyyyyyyyyyy')
+  })
+  Files.on('successCopy', () => {
+    console.log('copy finish !')
+  })
+}
+var questions = [
+  {
+    type: 'input',
+    name: 'name',
+    message: 'What\'s your saving repository name ?',
+    default: save.options.name
+  },
+  {
+    type: 'confirm',
+    name: 'dest',
+    default: true,
+    message (answers) {
+      return "Confirm your saving repository path below ? \n " + color.green(path.resolve(to, answers.name))
+    },
+    filter (answers) {
+      if (answers.dest) {
+        return path.resolve(to, answers.name)
+      } else {
+        return false
+      }
+    }
+  },
+  {
+    type: 'input',
+    name: 'dest',
+    message: "What's your new destination path ?",
+    validate (input) {
+      let done = this.async
+      if (path.isAbsolute(input)) {
+        return true
+      }
+      return 'Has to be an absolute path !'
+    },
+    when (answers) {
+      if (answers.dest === false) {
+        return true
+      } else {
+        return false
+      }
+    }
+  }
+]
+
+if (save.options.interactive) {
+  inquirer.prompt(questions).then(runSaveCmd) 
+} else {
+  runSaveCmd({
+    dest: path.resolve(to)
+  })
+}
+ 
+
 // let success = false
 
 // let error = {}
