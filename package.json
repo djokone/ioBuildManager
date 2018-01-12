@@ -1,7 +1,7 @@
 {
   "name": "build-manager",
-  "version": "1.0.0",
-  "private": true,
+  "version": "1.2.1",
+  "private": false,
   "description": "Package to manage your build workflow with iorizon",
   "main": "buildManager",
   "scripts": {
