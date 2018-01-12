@@ -4,7 +4,6 @@ let version = require('../package.json').version
 var View = require('iorizon-cli/bin/lib/view')
 let color = require('chalk')
 
-require('iorizon-cli/bin/lib/debugger')
 let buildManager = new Io()
 let options = {
   head: ['Commands', 'Path to the command'],

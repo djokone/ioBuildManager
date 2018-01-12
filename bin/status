@@ -1,0 +1,11 @@
+#! /usr/bin/env node
+var Io = require('iorizon-cli')
+// require('iorizon-cli/bin/lib/debugger')
+var FM = require('../lib/FileManager.js')
+
+let Status = new Io()
+let File = new FM({
+  includes: Status.options.include,
+  destination: Status.options.destination
+})
+console.log(File.treeIncludeFiles)
